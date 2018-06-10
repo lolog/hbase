@@ -1,0 +1,15 @@
+01. 表空间
+    create_namespace 'hb'      # 创建表空间
+    drop_namespace 'hb'        # 删除表空间
+    describe_namespace 'hb'    # 描述表空间
+    list_namespace             # 罗列表空间
+
+02. 表
+    list                        # 罗列default表空间下的所有表
+    list_namespace_tables 'hb'  # 罗列出表空间下的所有表
+    
+    # 普通命令如果不指定表空间, 默认为default表namespace
+    create 'hb:tab', 'family'                          # 选择表空间创建表
+    scan 'hb:tab' [, {version => 3}]                   # 查看hb:tab表的数据, version可选的版本号
+    put 'hb:tab', 'row', 'family:qualifier', 'value'   # 新增一条数据
+    
