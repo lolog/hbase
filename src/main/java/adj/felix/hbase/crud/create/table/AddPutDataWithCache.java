@@ -41,14 +41,20 @@ public class AddPutDataWithCache {
 		
 		// 列族
 		byte[] faccFamily = Bytes.toBytes("facc");
+		byte[] noFamily = Bytes.toBytes("no");
 		// 列
 		byte[] quaccQuaifier = Bytes.toBytes("quacc");
 		
-		Put put = new Put(Bytes.toBytes("row04"));
-		put.addColumn(faccFamily, quaccQuaifier, Bytes.toBytes("value04"));
+		// 数据
+		Put put04 = new Put(Bytes.toBytes("row04"));
+		put04.addColumn(faccFamily, quaccQuaifier, Bytes.toBytes("value04001"));
+		// 批量提交的时候, 不存在的Family会抛异常, 本条记录不会影响其他数据的插入
+		Put put05 = new Put(Bytes.toBytes("row05"));
+		put05.addColumn(noFamily, quaccQuaifier, Bytes.toBytes("value005"));
 		
 		// 将数据加入到缓冲区，可以根据自己的需要控制缓冲区的大小，实现批量提交数据
-		cacheMutator.mutate(put);
+		cacheMutator.mutate(put04);
+		cacheMutator.mutate(put05);
 		
 		// 在未发送刷新缓存之前, 检测是否将数据插入到HBase
 		Get get = new Get(Bytes.toBytes("row04"));
