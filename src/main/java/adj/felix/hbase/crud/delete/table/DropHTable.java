@@ -26,7 +26,7 @@ public class DropHTable {
 		Admin admin = connection.getAdmin();
 
 		// TableName对象
-		TableName tableName = TableName.valueOf("test");
+		TableName tableName = TableName.valueOf("hb", "test");
 		// 如果存在, 则删除该表
 		if (admin.tableExists(tableName)) {
 			// 删除表之前需要disable表, 再删除
