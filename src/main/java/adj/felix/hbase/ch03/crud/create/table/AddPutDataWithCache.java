@@ -66,6 +66,9 @@ public class AddPutDataWithCache {
 		// 通过close()方法也能提交RPC，但是下次必须重新获取相应表的BufferedMutator缓冲区对象
 		// 或 cacheMutator.close();
 		
+		// 刷写表所有客户端的写操作,
+		hbTestTable.close();
+		
 		// 等待提交带HBase成功
 		Thread.sleep(1000);
 		

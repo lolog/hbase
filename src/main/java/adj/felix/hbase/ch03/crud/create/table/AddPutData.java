@@ -77,6 +77,9 @@ public class AddPutData {
 		// 添加数据
 		testTable.put(put);
 		
+		// 刷写表所有客户端的写操作,
+		testTable.close();
+		
 		// 关闭流, 以及释放链接此到的资源
 		connection.close();
 	}

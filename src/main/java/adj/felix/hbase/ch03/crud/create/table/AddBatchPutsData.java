@@ -60,6 +60,9 @@ public class AddBatchPutsData {
 		// 发送一个RPC到服务器
 		hbTestTable.put(puts);
 		
+		// 刷写表所有客户端的写操作,
+		hbTestTable.close();
+		
 		// 关闭流, 以及释放链接此到的资源
 		connection.close();
 	}
