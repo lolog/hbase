@@ -1,4 +1,4 @@
-package adj.felix.hbase.crud.delete.table;
+package adj.felix.hbase.ch03.crud.delete.table;
 
 import java.io.IOException;
 

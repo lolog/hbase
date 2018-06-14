@@ -1,4 +1,4 @@
-package adj.felix.hbase.crud.create.table;
+package adj.felix.hbase.ch03.crud.create.table;
 
 import java.io.IOException;
 
@@ -49,7 +49,7 @@ import org.apache.hadoop.hbase.util.Bytes;
  * </pre>
  * @author adolf felix
  */
-public class AddPutData {
+public class AddPutData2 {
 	public static void main(String[] args) throws IOException {
 		Configuration config = HBaseConfiguration.create();
 		config.set("hbase.zookeeper.quorum", "master,slave1,slave2");

@@ -1,4 +1,4 @@
-package adj.felix.hbase.crud.read.table;
+package adj.felix.hbase.ch03.crud.read.table;
 
 import java.io.IOException;
 import java.util.ArrayList;

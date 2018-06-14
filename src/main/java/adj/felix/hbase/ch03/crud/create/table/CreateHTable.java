@@ -1,4 +1,4 @@
-package adj.felix.hbase.crud.create.table;
+package adj.felix.hbase.ch03.crud.create.table;
 
 import java.io.IOException;
 

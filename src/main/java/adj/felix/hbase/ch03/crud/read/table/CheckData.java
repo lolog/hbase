@@ -1,20 +1,21 @@
-package adj.felix.hbase.crud.delete.table;
+package adj.felix.hbase.ch03.crud.read.table;
 
 import java.io.IOException;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.TableName;
-import org.apache.hadoop.hbase.client.Admin;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
+import org.apache.hadoop.hbase.client.Get;
+import org.apache.hadoop.hbase.client.Table;
+import org.apache.hadoop.hbase.util.Bytes;
 
 /**
- * 删除HTable
+ * 核查数据是否存在
  * @author adolf felix
- *
  */
-public class DropHTable {
+public class CheckData {
 	public static void main(String[] args) throws IOException {
 		Configuration config = HBaseConfiguration.create();
 		config.set("hbase.zookeeper.quorum", "master,slave1,slave2");
@@ -22,21 +23,18 @@ public class DropHTable {
 
 		// 创建HBase链接
 		Connection connection = ConnectionFactory.createConnection(config);
-		// Admin可用于创建，删除，列出，启用和禁用表格，添加和删除表格列族和其他管理操作。
-		Admin admin = connection.getAdmin();
 
 		// TableName对象
 		TableName tableName = TableName.valueOf("hb", "test");
-		// 如果存在, 则删除该表
-		if (admin.tableExists(tableName)) {
-			// 删除表之前需要disable表, 再删除
-			admin.disableTable(tableName);
-			// 删除表
-			admin.deleteTable(tableName);
-		}
-
+		// 获取hb命名空间下的test表
+		Table hbTestTable = connection.getTable(tableName);
+		
+		Get get = new Get(Bytes.toBytes("row01"));
+		get.addFamily(Bytes.toBytes("facc"));
+		
+		System.out.println("exists = " + hbTestTable.exists(get));
+		
 		// 关闭流, 以及释放链接此到的资源
-		admin.close();
 		connection.close();
 	}
 }
